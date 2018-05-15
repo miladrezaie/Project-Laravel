@@ -206,7 +206,7 @@
         <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#">
                 <img src="../dist/img/avatar.png" class="user-image" alt="User Image">
-                <span class="hidden-xs">حسین زعفرانی</span>
+                <span class="hidden-xs">میلاد رضایی</span>
                 <i class="fa fa-caret-down"></i>
             </a>
 
