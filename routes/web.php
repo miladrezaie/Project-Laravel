@@ -1,25 +1,55 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+Route::group([], function () {
+    Route::get('/', 'HomeController@indexx');
 
-Route::get('/', function () {
-    return view('welcome');
+
+    Route::get('/about', function () {
+        return view('home.about');
+    });
+
+    Route::get('/forms', function () {
+        return view('home.forms');
+    });
+
+    Route::get('/contact', function () {
+        return view('home.contact');
+    });
+
+    Route::get('/projects', function () {
+        return view('home.projects');
+    });
+
+    Route::get('/group','HomeController@show_profosor');
+
 });
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/dashboard', function () {
-    return view('admin.layout');
+Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
+    Route::get('/index', function () {
+        return view('dash.index');
+    });
+    Route::get('/froms', 'NewsController@index');
+    Route::get('/forms/add', 'NewsController@create');
+
+    Route::post('/forms/add', 'NewsController@storee');
+    Route::delete('/forms/add/{id}', 'NewsController@delete')->name('form.delete');
+
+    Route::get('/forms/{id}/edit', 'NewsController@edit')->name('form.edit');
+    Route::patch('/forms/update/{id}', 'NewsController@update');
+
+
+    Route::get('/profosor', 'ProfosorController@indexx');
+    Route::get('/profosor/create', 'ProfosorController@createe');
+
+    Route::post('/profosor/store', 'ProfosorController@storee');
+    Route::delete('/profosor/delete/{id}', 'ProfosorController@delete')->name('profosor.delete');
+
+    Route::get('/profosor/{id}/edit', 'ProfosorController@edit')->name('profosor.edit');
+    Route::patch('/profosor/update/{id}', 'ProfosorController@update');
 });
+
 
